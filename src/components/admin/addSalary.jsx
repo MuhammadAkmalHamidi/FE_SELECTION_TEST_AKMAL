@@ -22,6 +22,7 @@ import  Axios  from "axios";
 
 export const AddSalary = ({userId}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const toast = useToast()
     
     const handleClick = async (value) => {
         try {
@@ -29,6 +30,18 @@ export const AddSalary = ({userId}) => {
                 gaji : value.gaji,
                 userId : userId
             })
+            const message = response.data.message
+            toast({
+                title: "Selamat!",
+                description: message,
+                status: "success",
+                duration: 1500,
+                isClosable: true,
+                position: "top"
+            })
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
         } catch (error) {
             console.log(error);
         }
@@ -36,7 +49,7 @@ export const AddSalary = ({userId}) => {
 
     return (
         <>
-            <Button onClick={onOpen}>Atur Gaji</Button>
+            <Button onClick={onOpen} bgColor={"#009698"} color={"white"} fontWeight={"thin"} textShadow={"0px 0px 3px white"}>Atur Gaji</Button>
             <Formik
                 initialValues={{
                     gaji:""
@@ -64,7 +77,7 @@ export const AddSalary = ({userId}) => {
                                     </ModalBody>
 
                                     <ModalFooter>
-                                        <Button type="Submit" colorScheme='blue' mr={3}>
+                                        <Button type="Submit" bgColor={"cyan.700"} color={"white"} mr={3}>
                                             Simpan
                                         </Button>
                                         <Button onClick={onClose}>Cancel</Button>

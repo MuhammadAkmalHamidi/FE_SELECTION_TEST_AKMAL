@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { Jam } from "../components/jam"
 import { Navbar } from "../components/navbar"
 import { useNavigate } from "react-router-dom"
-import { RiwayatAbsen } from "../components/karyawan/riwayatAbsen"
 import Axios from "axios"
 
 export const Absen = () => {
@@ -18,15 +17,17 @@ export const Absen = () => {
             const response = await Axios.post(`http://localhost:2000/absen/clockIn`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             })
-            window.location.reload()
             toast({
-                title: "Terima kasih",
-                description: "Anda Sudah Absen Masuk Hari Ini",
+                title: "Terima Kasih!",
+                description: "Anda Sudah Absen Masuk",
                 status: "success",
-                duration: 1000,
+                duration: 1500,
                 isClosable: true,
                 position: "top"
             })
+            setTimeout(() => {
+                window.location.reload()
+            }, 800)
         } catch (error) {
             toast({
                 title: "Maaf",
@@ -44,15 +45,17 @@ export const Absen = () => {
             const response = await Axios.post(`http://localhost:2000/absen/clockOut`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             })
-            window.location.reload()
             toast({
                 title: "Terima kasih",
-                description: "Anda Sudah Absen Keluar Hari Ini",
+                description: "Anda Sudah Absen Keluar",
                 status: "success",
                 duration: 1000,
                 isClosable: true,
                 position: "top"
             })
+            setTimeout(() => {
+                window.location.reload()
+            }, 800)
         } catch (error) {
             toast({
                 title: "Maaf",
@@ -83,8 +86,10 @@ export const Absen = () => {
                     <Box bgColor="rgba(255,255,255,0.5)" h={{base:"150px", sm:"170px", md:"200px", lg:"250px"}} w={{base:"250px", sm:"270px", md:"300px", lg:"400px"}} borderRadius="20px" boxShadow="0px 0px 15px gray">
                         <Flex h={{base:"100px", sm:"120px", md:"140px", lg:"200px"}} justifyContent="center" lineHeight="150px"> <Jam /> </Flex>
                         <Flex justifyContent="space-evenly">
-                                {parseInt(jam) < 8 || parseInt(jam) >= 18 ? (<Button isDisabled={true} boxShadow={"0px 0px 5px gray"} _hover={{ bgClip:"#0abab5"}} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Masuk</Button>) : (<Button boxShadow={"0px 0px 5px gray"} onClick={clockIn} _hover={{ boxShadow: "0px 0px 10px #0abab5" }} transition={"0.3s"} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Masuk</Button>)}
-                                {parseInt(jam) < 18 ? (<Button isDisabled={true} boxShadow={"0px 0px 5px gray"} _hover={{bgColor:"#0abab5"}} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Keluar</Button>) : (<Button boxShadow={"0px 0px 5px gray"} onClick={clockOut} _hover={{ boxShadow: "0px 0px 10px #0abab5" }} transition={"0.3s"} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Keluar</Button>)}
+                                {parseInt(jam) < 8 || parseInt(jam) > 12 ? (<Button isDisabled={true} _active={{bgColor:"#0abab5"}} boxShadow={"0px 0px 5px gray"} _hover={{ bgClip:"#0abab5"}} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Masuk</Button>) : (<Button boxShadow={"0px 0px 5px gray"} onClick={clockIn} _hover={{ boxShadow: "0px 0px 10px #0abab5" }} transition={"0.3s"} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Masuk</Button>)}
+                                {/* <Button boxShadow={"0px 0px 5px gray"} onClick={clockIn} _hover={{ boxShadow: "0px 0px 10px #0abab5" }} transition={"0.3s"} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Masuk</Button> */}
+                                {parseInt(jam) < 18 || parseInt(jam) >= 21 ? (<Button isDisabled={true} boxShadow={"0px 0px 5px gray"} _hover={{bgColor:"#0abab5"}} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Keluar</Button>) : (<Button boxShadow={"0px 0px 5px gray"} onClick={clockOut} _hover={{ boxShadow: "0px 0px 10px #0abab5" }} transition={"0.3s"} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Keluar</Button>)}
+                                {/* <Button boxShadow={"0px 0px 5px gray"} onClick={clockOut} _hover={{ boxShadow: "0px 0px 10px #0abab5" }} transition={"0.3s"} bgColor={"#0abab5"} p={"10px"} borderRadius={"15px"} color={"white"} fontWeight={"thin"}>Absen Keluar</Button> */}
                             </Flex>
                         </Box>
                     </Flex>
