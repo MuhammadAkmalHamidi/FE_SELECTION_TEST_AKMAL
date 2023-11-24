@@ -9,6 +9,8 @@ import  Axios  from "axios";
 import { CreateAccount } from "./pages/createAccount";
 import { AbsenKeseluruhan } from "./pages/detailRiwayatAbsen";
 import { MonthSalary } from "./components/karyawan/gajiBulanan";
+import { Jadwal } from "./pages/jadwal";
+import { JadwalKerjaAdmin } from "./pages/jadwalKerjaAdmin";
 
 const router = createBrowserRouter([
   {path: "/", element: <Login />},
@@ -16,7 +18,9 @@ const router = createBrowserRouter([
   {path: "/listKaryawan", element: <ListKaryawan />},
   {path: "/akunBaru", element: <CreateAccount />},
   {path: "/riwayatAbsensi", element: <AbsenKeseluruhan />},
-  {path: "/gajiPerBulan", element: <MonthSalary />}
+  {path: "/gajiPerBulan", element: <MonthSalary />},
+  {path: "/jadwal", element: <Jadwal />},
+  {path: "/jadwalAdmin", element: <JadwalKerjaAdmin />},
   
 ])
 

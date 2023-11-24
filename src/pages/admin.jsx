@@ -11,7 +11,6 @@ export const ListKaryawan = () => {
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
     const [reload, setReload] = useState(true);
-    console.log(data[0]?.salary);
 
     const dataUser = async (pageNum) => {
         try {
@@ -55,20 +54,17 @@ export const ListKaryawan = () => {
         <Flex flexDirection="column">
             <Navbar />
             <Flex
-                pl={{md: "150px" }}
-                pt="50px"
+                pl="150px"
                 pb="50px"
                 justifyContent="center"
                 w="100%"
-                m="auto"
-                maxW="1200px"
             >
                 <Box>
                     <Flex justifyContent="center" h="100px" fontSize="30px" color="gray.700" fontWeight="thin">
                         List Karyawan
                     </Flex>
                     <Flex>
-                        <Table variant="simple" w={{ base: "150px", md: "600px", lg: "800px", xl: "1000px" }} size="lg">
+                        <Table variant="simple" w={"full"} size="lg">
                             <Thead>
                                 <Tr>
                                     <Th color="#009698" textAlign="center" w="300px">
@@ -115,7 +111,7 @@ export const ListKaryawan = () => {
                                             </Td>
                                             <Td color="gray.600" textAlign="center">
                                                 <Box>
-                                                    <AddSalary userId={`${item.id}`} />
+                                                    <AddSalary userId={`${item.id}`} salary={item.salary} setReload={setReload} reload={reload} />
                                                 </Box>
                                             </Td>
                                         </Tr>
@@ -124,12 +120,15 @@ export const ListKaryawan = () => {
                             </Tbody>
                         </Table>
                     </Flex>
-                    <Flex justifyContent="space-between">
+                    <Flex justifyContent="space-between" justifyItems={"center"} px={"15px"}>
                         <Flex>
-                            <AddEmploye />
+                            <AddEmploye reload={reload} setReload={setReload} />
                             <SendMail />
                         </Flex>
-                        <Flex gap="10px" mt="15px">
+                        <Flex gap="10px" justifyContent={"center"} mt="15px">
+                            <Flex mt={"10px"}>
+                                Page {page} of Page {totalPage}
+                            </Flex>
                             {page >= 2 && (
                                 <Button
                                     textShadow="0px 0px 5px white"

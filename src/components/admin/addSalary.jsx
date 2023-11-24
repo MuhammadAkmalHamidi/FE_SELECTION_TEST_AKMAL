@@ -8,27 +8,22 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    FormControl,
     FormLabel,
     Input,
     useToast,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
 } from "@chakra-ui/react"
-import { Field, Form, Formik } from "formik";
 import { useState } from "react";
-import  Axios  from "axios";
+import Axios from "axios";
 
-export const AddSalary = ({userId}) => {
+export const AddSalary = ({ userId, setReload, reload, salary }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [newSalary, setNewSalary] = useState(salary ? salary.salary : 0)
     const toast = useToast()
-    
-    const handleClick = async (value) => {
+    const handleClick = async () => {
         try {
             const response = await Axios.post(`http://localhost:2000/user/addSalary`, {
-                gaji : value.gaji,
-                userId : userId
+                gaji: newSalary,
+                userId: userId
             })
             const message = response.data.message
             toast({
@@ -39,55 +34,44 @@ export const AddSalary = ({userId}) => {
                 isClosable: true,
                 position: "top"
             })
-            setTimeout(() => {
-                window.location.reload()
-            }, 1000)
+            setReload(!reload)
         } catch (error) {
             console.log(error);
         }
     }
 
+    const formatRupiah = (gaji) => {
+        return gaji.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
+    }
+
     return (
         <>
             <Button onClick={onOpen} bgColor={"#009698"} color={"white"} fontWeight={"thin"} textShadow={"0px 0px 3px white"}>Atur Gaji</Button>
-            <Formik
-                initialValues={{
-                    gaji:""
-                }}
-                onSubmit={(value) => {
-                    handleClick(value)
-                }}
-            >
-                {(props) => {
-                    return (
-                        <Modal
-                            isOpen={isOpen}
-                            onClose={onClose}
-                        >
-                            <Form>
-                                <ModalOverlay />
-                                <ModalContent>
-                                    <ModalHeader>Atur Gaji Karyawan</ModalHeader>
-                                    <ModalCloseButton />
-                                    <ModalBody pb={6}>
-                                        <FormControl>
-                                            <FormLabel>Atur Gaji</FormLabel>
-                                            <Input name="gaji" as={Field} type="INTEGER" />
-                                        </FormControl>
-                                    </ModalBody>
 
-                                    <ModalFooter>
-                                        <Button type="Submit" bgColor={"cyan.700"} color={"white"} mr={3}>
-                                            Simpan
-                                        </Button>
-                                        <Button onClick={onClose}>Cancel</Button>
-                                    </ModalFooter>
-                                </ModalContent>
-                            </Form>
-                        </Modal>
-                    )
-                }}
-            </Formik >
+            <Modal
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Atur Gaji Karyawan</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                        <>
+                            <FormLabel> {newSalary ? formatRupiah(newSalary) : formatRupiah(0)} </FormLabel>
+                            <Input onChange={(e) => setNewSalary(parseInt(e.target.value))} type="number" name="gaji" />
+                        </>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button onClick={handleClick} bgColor={"cyan.700"} color={"white"} mr={3}>
+                            Simpan
+                        </Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+
         </>
     )
 }
