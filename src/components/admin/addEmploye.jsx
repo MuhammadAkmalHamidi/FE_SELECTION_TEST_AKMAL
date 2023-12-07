@@ -47,7 +47,7 @@ export const AddEmploye = ({reload, setReload}) => {
     })
     const getRole = async () => {
         try {
-            const response = await Axios.get(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user/role`)
+            const response = await Axios.get(`https://appsensi-be-muhammadakmalhamidi.vercel.app/user/role`)
             setRole(response.data)
         } catch (error) {
             console.log(error);
@@ -55,7 +55,7 @@ export const AddEmploye = ({reload, setReload}) => {
     }
     const handleClick = async (value) => {
         try {
-            const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user/register`, value)
+            const response = await Axios.post(`https://appsensi-be-muhammadakmalhamidi.vercel.app/user/register`, value)
             toast({
                 title: "Selamat!",
                 description: "Berhasil Menambahkan Data Karyawan Baru",

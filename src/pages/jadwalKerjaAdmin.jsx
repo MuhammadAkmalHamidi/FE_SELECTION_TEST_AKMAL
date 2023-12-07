@@ -27,7 +27,7 @@ export const JadwalKerjaAdmin = () => {
 
     const jadwal = async () => {
         try {
-            const response = await axios.get(`http://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal`)
+            const response = await axios.get(`https://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal`)
             setData(response.data)
         } catch (error) {
             console.log(error);
@@ -43,7 +43,7 @@ export const JadwalKerjaAdmin = () => {
     });
     const deleteShift = async () => {
         try {
-            const response = await axios.delete(`http://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal/delete/${userId}`)
+            const response = await axios.delete(`https://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal/delete/${userId}`)
             setReload(!reload)
             onClose()
         } catch (error) {

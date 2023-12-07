@@ -14,7 +14,7 @@ export const RiwayatAbsen = () => {
     const history = async () => {
 
         try {
-            const response = await Axios.get(`http://appsensi-be-muhammadakmalhamidi.vercel.app/absen/history?sortBy=${sortBy}&sort=${sort}`,{
+            const response = await Axios.get(`https://appsensi-be-muhammadakmalhamidi.vercel.app/absen/history?sortBy=${sortBy}&sort=${sort}`,{
                 headers : { Authorization : `Bearer ${token}` }
             })
             setData(response.data)

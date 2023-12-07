@@ -31,7 +31,7 @@ export const CreateAccount = () => {
 
     const register = async (value) => {
         try {
-            const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user/register`, value)
+            const response = await Axios.post(`https://appsensi-be-muhammadakmalhamidi.vercel.app/user/register`, value)
             toast({
                 title: "Selamat!",
                 description: "Berhasil Menambahkan Data Karyawan Baru",

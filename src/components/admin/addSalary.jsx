@@ -21,7 +21,7 @@ export const AddSalary = ({ userId, setReload, reload, salary }) => {
     const toast = useToast()
     const handleClick = async () => {
         try {
-            const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user/addSalary`, {
+            const response = await Axios.post(`https://appsensi-be-muhammadakmalhamidi.vercel.app/user/addSalary`, {
                 gaji: newSalary,
                 userId: userId
             })

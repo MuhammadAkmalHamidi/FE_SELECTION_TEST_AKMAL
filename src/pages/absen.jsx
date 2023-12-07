@@ -20,7 +20,7 @@ export const Absen = () => {
 
     const getShift = async () => {
         try {
-            const response = await Axios.get('http://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal/check', {
+            const response = await Axios.get('https://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal/check', {
                 headers: { Authorization: `Bearer ${token}` }
             })
             setCheckShift(response.data.shiftId)
@@ -55,7 +55,7 @@ export const Absen = () => {
                 if (distance < 25) {
 
                     try {
-                        const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/absen/clockIn?shiftId=${shift}`, {}, {
+                        const response = await Axios.post(`https://appsensi-be-muhammadakmalhamidi.vercel.app/absen/clockIn?shiftId=${shift}`, {}, {
                             headers: { Authorization: `Bearer ${token}` }
                         })
                         toast({
@@ -115,7 +115,7 @@ export const Absen = () => {
                 const distance = earthRadius * c * 1000;  // Dalam meter
                 if (distance < 10) {
                     try {
-                        const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/absen/clockOut?shiftId=${shift}`, {}, {
+                        const response = await Axios.post(`https://appsensi-be-muhammadakmalhamidi.vercel.app/absen/clockOut?shiftId=${shift}`, {}, {
                             headers: { Authorization: `Bearer ${token}` }
                         })
                         toast({

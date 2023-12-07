@@ -14,7 +14,7 @@ export const ListKaryawan = () => {
 
     const dataUser = async (pageNum) => {
         try {
-            const response = await Axios.get(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user?page=${pageNum}`);
+            const response = await Axios.get(`https://appsensi-be-muhammadakmalhamidi.vercel.app/user?page=${pageNum}`);
             setData(response.data.result);
             setPage(response.data.page);
             setTotalPage(response.data.totalPage);
