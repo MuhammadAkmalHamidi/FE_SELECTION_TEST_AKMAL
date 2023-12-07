@@ -27,8 +27,9 @@ export const Login = () => {
 
     const onLogin = async (value) => {
         try {
-            const response = await Axios.post(`http://localhost:2000/user/login`, value)
+            const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user/login`, value)
             dispatch(setValue(response.data.result));
+            console.log(response);
             localStorage.setItem("token", response.data.token);
             if (response.data.result.roleId === 1) {
                 navigate('/listKaryawan')
@@ -57,7 +58,7 @@ export const Login = () => {
             }
         } catch (error) {
             toast({
-                title: error.response.data.message,
+                title: "asd",
                 status: "warning",
                 duration: 1000,
                 isClosable: true,

@@ -23,7 +23,7 @@ export const AddShift = ({ shiftId, reload, setReload }) => {
 
     const dataUser = async () => {
         try {
-            const response = await Axios.get(`http://localhost:2000/user?page=1&filter=${roleId}&list=1`);
+            const response = await Axios.get(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user?page=1&filter=${roleId}&list=1`);
             setData(response.data.result);
             setPage(response.data.page);
             setTotalPage(response.data.totalPage);
@@ -34,7 +34,7 @@ export const AddShift = ({ shiftId, reload, setReload }) => {
 
     const allRole = async () => {
         try {
-            const response = await Axios.get(`http://localhost:2000/user/role`)
+            const response = await Axios.get(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user/role`)
             setRole(response.data)
         } catch (error) {
             console.log(error);
@@ -43,7 +43,7 @@ export const AddShift = ({ shiftId, reload, setReload }) => {
 
     const handleClick = async () => {
         try {
-            const response = await Axios.post(`http://localhost:2000/jadwal/add/${userId}/${shiftId}`)
+            const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal/add/${userId}/${shiftId}`)
             setReload(!reload)
             toast({
                 title: "Selamat!",

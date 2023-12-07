@@ -8,7 +8,7 @@ export const SendMail = () => {
 
     const sendEmail = async (value) => {
         try {
-            const response = await Axios.post(`http://localhost:2000/user/createAccount`, value)
+            const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/user/createAccount`, value)
             toast({
                 description:"Email Berhasil Di Kirim",
                 duration:"1000",

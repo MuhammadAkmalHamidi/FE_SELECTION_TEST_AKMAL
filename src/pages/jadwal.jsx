@@ -8,7 +8,7 @@ export const Jadwal = () => {
 
     const jadwal = async () => {
         try {
-            const response = await axios.get(`http://localhost:2000/jadwal`)
+            const response = await axios.get(`http://appsensi-be-muhammadakmalhamidi.vercel.app/jadwal`)
             setData(response.data)
         } catch (error) {
             console.log(error);

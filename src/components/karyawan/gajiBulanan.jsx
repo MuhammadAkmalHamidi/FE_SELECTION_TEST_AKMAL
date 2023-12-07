@@ -13,7 +13,7 @@ export const MonthSalary = () => {
 
     const history = async () => {
         try {
-            const response = await Axios.post(`http://localhost:2000/salary/monthSalary?sortBy=${sortBy}&sort=${sort} `, {}, {
+            const response = await Axios.post(`http://appsensi-be-muhammadakmalhamidi.vercel.app/salary/monthSalary?sortBy=${sortBy}&sort=${sort} `, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             setData(response.data)
