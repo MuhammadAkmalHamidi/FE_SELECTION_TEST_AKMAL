@@ -27,7 +27,7 @@ export const Login = () => {
 
     const onLogin = async (value) => {
         try {
-            const response = await Axios.post(`https://be-selection-test-akmal.vercel.app//user/login`, value)
+            const response = await Axios.post(`https://be-selection-test-akmal.vercel.app/user/login`, value)
             dispatch(setValue(response.data.result));
             console.log(response);
             localStorage.setItem("token", response.data.token);

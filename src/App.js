@@ -31,7 +31,7 @@ function App() {
 
   const keepLogin = async () => {
     try {
-      const response = await Axios.get(`https://be-selection-test-akmal.vercel.app//user/keepLogin`, {
+      const response = await Axios.get(`https://be-selection-test-akmal.vercel.app/user/keepLogin`, {
         headers:  {Authorization: `Bearer ${token}`}
       })
       dispatch(setValue(response.data));
